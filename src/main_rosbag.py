@@ -4,8 +4,6 @@ from src.laserscan import ydLidarPointsCallback
 
 bag = rosbag.Bag(config.ROS_BAG_PATH, 'r')
 
-# print(bag._get_yaml_info())
-
 topics = [
     '/diffbot/scan',
 ]
