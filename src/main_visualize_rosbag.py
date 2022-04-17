@@ -36,6 +36,8 @@ for _, msg, t in bag.read_messages(topics=topics, end_time=rostime.Time(nsecs=16
             xs2.append(x)
             ys2.append(y)
 
+        print(r, rew)
+
         plt.text(x, y, f"{rew}")
 
 

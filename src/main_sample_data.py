@@ -8,14 +8,7 @@ import reward
 
 np.random.seed(1905)
 
-font = {'family': 'normal',
-        'size' : 6}
-
-matplotlib.rc('font', **font)
-
-# data = np.random.randint(1000, size=(500, 2)) / 100
-
-# gen points in polar system - pairs (phi, dst)
+matplotlib.rc('font', size=6)
 
 r0 = np.array([1/2, 1/2])
 xs1, ys1 = [], []
@@ -23,8 +16,8 @@ xs2, ys2 = [], []
 
 plt.figure()
 
-for layer in np.arange(0, 100, 10):
-    for phi in range(0, 720, 10):
+for layer in np.arange(0, 10, 3):
+    for phi in range(0, 720, 60):
         r = 0.3*layer
 
         x = r0[0] + r*math.cos(phi)
@@ -40,7 +33,9 @@ for layer in np.arange(0, 100, 10):
             xs1.append(x)
             ys1.append(y)
 
-        plt.text(x, y, f"{reward.point_reward(phi, r)}")
+        rew, _ = reward.point_reward(phi, r)
+
+        plt.text(x, y, f"{rew:.2f}")
 
 ax = plt.gca()
 ax.set_aspect('equal')

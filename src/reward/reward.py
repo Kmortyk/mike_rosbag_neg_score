@@ -14,17 +14,22 @@ B = 1
 A2 = A*A
 B2 = B*B
 
+iA2 = 1/A2
+iB2 = 1/B2
+
+# phi in range [0, 719) - 0.5 degree per step
 def point_reward(phi, r) -> Tuple[float, bool]:
-    x = R0[0] + r * math.cos(phi)
-    y = R0[1] + r * math.sin(phi)
+    x = r * math.cos(phi/2)
+    y = r * math.sin(phi/2)
 
-    dx = x - R0[0]
-    dy = y - R0[1]
+    dst = (x**2)*iA2 + (y**2)*iB2
 
-    if (dx * dx) / A2 + (dy * dy) / B2 <= 1:
-        return -1000, True
+    if min(x, y) != 0 and dst <= 1:
+        return -(100 * np.log(1 / np.sqrt(dst))), True
 
     return 0, False
+
+##### old
 
 def reward_return(ax, rx, by, ry, total_reward):
     if np.min(rx, ry) > R0:
