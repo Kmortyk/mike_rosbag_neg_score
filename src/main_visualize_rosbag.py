@@ -9,7 +9,7 @@ from matplotlib.patches import Ellipse
 
 from src import reward
 from src.config import config
-from src.reward import point_reward, R0
+from src.reward import point_reward, start_point
 
 matplotlib.rc('font', size=6)
 
@@ -46,6 +46,6 @@ ax.set_aspect('equal')
 
 ax.plot(xs1, ys1, marker='o', color='b', ls='')
 ax.plot(xs2, ys2, marker='o', color='r', ls='')
-ax.add_patch(Ellipse(tuple(reward.R0), width=reward.A*2, height=reward.B*2, edgecolor='m', fc='None', lw=2, zorder=5))
+ax.add_patch(Ellipse(tuple(reward.start_point), width=reward.A * 2, height=reward.B * 2, edgecolor='m', fc='None', lw=2, zorder=5))
 
 plt.show()
