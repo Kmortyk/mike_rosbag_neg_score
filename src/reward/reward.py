@@ -20,19 +20,27 @@ iA2 = 1/A2
 iB2 = 1/B2
 
 # todo
-#   jetson проверить время обработки массива
-# todo
-#   объединить - в одно увязать (модульно), как это всё использовать
-# todo
-#   таблица логарифмов
+#  1. тестовые данные со стенками
+#  2. jetson проверить время обработки массива
+#  3. объединить - в одно увязать (модульно), как это всё использовать
 
-cos_memo = {}
-sin_memo = {}
+cos_memo  = {}
+sin_memo  = {}
+log_memo  = {}
+sqrt_memo = {}
 
 def init_memos():
-    for i in range(0, 361):
-        cos_memo[i] = math.cos(math.radians(i))
-        sin_memo[i] = math.sin(math.radians(i))
+    for v in np.arange(0.01, 1.01, 0.01):
+        r = round_float(v)
+
+        log_memo[r] = np.log(r)
+        sqrt_memo[r] = np.sqrt(r)
+
+    for v in np.arange(0.00, 360.05, 0.05):
+        a = round_float(v)
+
+        cos_memo[a] = math.cos(math.radians(a))
+        sin_memo[a] = math.sin(math.radians(a))
 
 # phi in range [0, 719) - 0.5 degree per step
 def point_reward(phi, r) -> Tuple[float, bool]:
@@ -59,7 +67,10 @@ def f_sin(phi) -> float:
     return sin_memo[phi/2]
 
 def f_log(v) -> float:
-    return np.log(v)
+    return log_memo[round_float(v)]
 
 def f_sqrt(dst) -> float:
-    return np.sqrt(dst)
+    return sqrt_memo[round_float(dst)]
+
+def round_float(v: float) -> float:
+    return round(v, 2)
