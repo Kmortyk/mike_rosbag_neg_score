@@ -6,6 +6,7 @@ import numpy as np
 from matplotlib.patches import Ellipse, Circle
 import reward
 from src.testdata.circles_data import CirclesData
+from src.testdata.one_wall_data import BoxData
 
 np.random.seed(1905)
 
@@ -18,24 +19,31 @@ plt.figure()
 
 reward.init_memos()
 
-scans = CirclesData().laser_scan_data()
+# points_data = CirclesData().laser_scan_data()
+points_data = [
+    BoxData(size=0.3, offset_x=1, offset_y=1),
+    BoxData(size=0.3, offset_x=-1, offset_y=1),
+    BoxData(size=0.3, offset_x=1, offset_y=-1),
+    BoxData(size=0.3, offset_x=-1, offset_y=-1),
+]
 
-for scan in scans:
-    for phi in range(0, 720, 1):
-        r = scan[phi]
+for pd in points_data:
+    for scan in pd.laser_scan_data():
+        for phi in range(0, 720, 1):
+            r = scan[phi]
 
-        x = r*math.cos(math.radians(phi/2))
-        y = r*math.sin(math.radians(phi/2))
+            x = r*math.cos(math.radians(phi/2))
+            y = r*math.sin(math.radians(phi/2))
 
-        rew, ok = reward.point_reward(phi, r)
-        if ok:
-            xs2.append(x)
-            ys2.append(y)
-        else:
-            xs1.append(x)
-            ys1.append(y)
+            rew, ok = reward.point_reward(phi, r)
+            if ok:
+                xs2.append(x)
+                ys2.append(y)
+            else:
+                xs1.append(x)
+                ys1.append(y)
 
-        plt.text(x, y, f"{rew:.2f}")
+            plt.text(x, y, f"{rew:.2f}")
 
 ax = plt.gca()
 ax.set_aspect('equal')
