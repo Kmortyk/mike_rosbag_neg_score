@@ -5,5 +5,9 @@ from src.reward import reward
 def ydLidarPointsCallback(msg):
     assert len(msg.ranges) == 719
 
-    for i in range(0, 719):
-        print(i, reward.point_reward(i, msg.ranges[i]))
+    for phi in range(0, 719):
+        r = msg.ranges[phi]
+
+        rew, _ = reward.point_reward(phi, r)
+
+        print(rew)

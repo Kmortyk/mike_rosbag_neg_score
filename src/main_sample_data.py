@@ -19,12 +19,12 @@ plt.figure()
 
 reward.init_memos()
 
-# points_data = CirclesData().laser_scan_data()
 points_data = [
     BoxData(size=0.3, offset_x=1, offset_y=1),
     BoxData(size=0.3, offset_x=-1, offset_y=1),
     BoxData(size=0.3, offset_x=1, offset_y=-1),
     BoxData(size=0.3, offset_x=-1, offset_y=-1),
+    # CirclesData()
 ]
 
 for pd in points_data:
