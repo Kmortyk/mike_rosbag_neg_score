@@ -20,11 +20,11 @@ plt.figure()
 reward.init_memos()
 
 points_data = [
-    BoxData(size=0.3, offset_x=1, offset_y=1),
-    BoxData(size=0.3, offset_x=-1, offset_y=1),
-    BoxData(size=0.3, offset_x=1, offset_y=-1),
-    BoxData(size=0.3, offset_x=-1, offset_y=-1),
-    # CirclesData()
+    # BoxData(size=0.3, offset_x=1, offset_y=1),
+    # BoxData(size=0.3, offset_x=-1, offset_y=1),
+    # BoxData(size=0.3, offset_x=1, offset_y=-1),
+    # BoxData(size=0.3, offset_x=-1, offset_y=-1),
+    CirclesData()
 ]
 
 for pd in points_data:
