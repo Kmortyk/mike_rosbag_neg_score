@@ -8,7 +8,7 @@ from src.testdata.test_data import TestData
 
 class CirclesData(TestData):
     def __init__(self,
-                 start_layer=0, end_layer=10, step_layer=3, layer_size=0.05,
+                 start_layer=0, end_layer=10, step_layer=3, layer_size=0.07,
                  start_hangle=0, end_hangle=720, step_hangle=30):
         self.start_layer = start_layer
         self.end_layer = end_layer

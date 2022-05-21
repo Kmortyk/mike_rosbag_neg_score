@@ -26,13 +26,8 @@ rxs, rys = [], []
 reward.init_memos()
 
 skip_count = 47
-count = 0
 
 for _, msg, t in bag.read_messages(start_time=rostime.Time(nsecs=1651921889999999999)):
-    count += 1
-    if count < skip_count:
-        continue
-
     for phi in range(0, 719, 1):
         r = msg.ranges[phi]
 
@@ -48,6 +43,7 @@ for _, msg, t in bag.read_messages(start_time=rostime.Time(nsecs=165192188999999
             ys1.append(y)
 
         plt.text(x, y, f"{rew:.2f}")
+    break
 
 for phi in range(0, 719, 90):
     r = 0.7

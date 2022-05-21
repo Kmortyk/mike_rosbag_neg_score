@@ -30,6 +30,8 @@ for _, msg, t in bag.read_messages(topics=topics):
     canvas = np.ones((CANVAS_WIDTH, CANVAS_HEIGHT, 3))
     md.clear()
 
+    res = 0
+
     for phi in range(0, 719, 1):
         r = msg.ranges[phi]
 
@@ -41,6 +43,7 @@ for _, msg, t in bag.read_messages(topics=topics):
 
         rew, ok = point_reward(phi, r)
         if ok:
+            res += rew
             cv2.circle(canvas, (x, y), radius=RADIUS, color=(0, 255, 255), thickness=-1)
         else:
             cv2.circle(canvas, (x, y), radius=RADIUS, color=(0, 0, 255), thickness=-1)
@@ -53,6 +56,8 @@ for _, msg, t in bag.read_messages(topics=topics):
             cv2.putText(canvas, f"{rew:.2f}", (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.3, (0, 0, 0))
 
     cv2.circle(canvas, (CX, CY), radius=RADIUS, color=(0, 255, 0), thickness=-1)
+
+    print(res)
 
     cv2.imshow("sim", canvas)
     cv2.waitKey(10)
