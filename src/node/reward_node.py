@@ -22,7 +22,7 @@ class RewardNode:
         self.pub.publish(calc_reward)
 
     def start(self):
-        rospy.Subscriber(config.LIDAR_TOPIC_FULL_NAME, LaserScan, self.callback)
+        rospy.Subscriber('diffbot/scan', LaserScan, self.callback)
         rospy.spin()
 
     @staticmethod
