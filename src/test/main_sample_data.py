@@ -4,7 +4,8 @@ import matplotlib
 from matplotlib import pyplot as plt
 import numpy as np
 from matplotlib.patches import Ellipse, Circle
-import reward
+
+from src.reward import reward
 from src.testdata.circles_data import CirclesData
 from src.testdata.one_wall_data import BoxData
 
